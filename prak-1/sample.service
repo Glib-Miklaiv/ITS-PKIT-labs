@@ -1,0 +1,14 @@
+[Unit]
+Description=Made by Mikliaiev Gleb
+Requires=network.target
+After=network.target
+
+[Install]
+WantedBy=multi-user.target
+
+[Service]
+ExecStart=java -jar /opt/sample/service.jar
+User=mikliaiev-gleb
+Restart=on-failure
+RestartSec=10
+Environment="PORT=8888"
