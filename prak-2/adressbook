@@ -1,0 +1,15 @@
+#!/bin/bash
+db="ab.db"
+touch "$db"
+pattern="$2"
+case "$1" in
+  new) echo "$2	$3" >> $db ;;
+  list) if [ ! -s "$db" ]; then
+          echo "the addressbook is empty"
+        else
+          cat "$db"
+        fi;;
+  remove) sed -i '/'"$2"'.*\t/d' $db;;
+  clear) rm $db;;
+  lookup) awk -F "	" '$1~/'"$2"'/ {print $2}' $db;;
+esac
